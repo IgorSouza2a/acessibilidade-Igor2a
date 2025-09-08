@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Página de Receitas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      font-size: 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-theme {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    header {
+      background-color: #ff7f50;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 2em;
+      position: relative;
+    }
+
+    /* Botão principal de acessibilidade */
+    #accessibility-toggle {
+      position: absolute;
+      top: 15px;
+      right: 40px;
+      background-color: #ff7f50;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+    #accessibility-toggle:hover {
+      background-color: #ff6333;
+    }
+
+    /* Container para botões de acessibilidade, inicialmente escondido */
+    .accessibility-controls {
+      position: absolute;
+      top: 50px;
+      right: 40px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background: #ff7f50;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 9;
+    }
+
+    .accessibility-controls button {
+      background-color: white;
+      border: none;
+      color: #ff7f50;
+      padding: 8px 12px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .accessibility-controls button:hover {
+      background-color: #ffdab9;
+      color: #b35426;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background-color: #ffe4d1;
+      padding: 10px 0;
+    }
+
+    body.dark-theme .tabs {
+      background-color: #1e1e1e;
+    }
+
+    .tab-button {
+      background-color: transparent;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      color: inherit;
+    }
+
+    .tab-button:hover, .tab-button.active {
+      background-color: #ffdab9;
+      border-radius: 10px;
+    }
+
+    body.dark-theme .tab-button:hover, 
+    body.dark-theme .tab-button.active {
+      background-color: #333;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.5s ease-in;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .recipe {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-theme .recipe {
+      background: #222;
+      color: #eee;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    .recipe h3 {
+      margin-top: 0;
+      color: #ff7f50;
+    }
+
+    body.dark-theme .recipe h3 {
+      color: #ffa07a;
+    }
+
+    .recipe ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🍲 Receitas Deliciosas
+    <button id="accessibility-toggle" aria-expanded="false" aria-controls="accessibility-controls">Acessibilidade ⚙️</button>
+
+    <div class="accessibility-controls" id="accessibility-controls" role="region" aria-label="Controles de acessibilidade">
+      <button id="toggle-theme" aria-label="Alternar tema claro/escuro">🌙 Tema</button>
+      <button id="increase-font" aria-label="Aumentar fonte">A+</button>
+      <button id="decrease-font" aria-label="Diminuir fonte">A-</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab('cafe')">Café da Manhã</button>
+    <button class="tab-button" onclick="openTab('almoco')">Almoço</button>
+    <button class="tab-button" onclick="openTab('sobremesa')">Sobremesas</button>
+  </div>
+
+  <div id="cafe" class="tab-content active">
+    <div class="recipe">
+      <h3>Panquecas Fofinhas</h3>
+      <p><strong>Ingredientes:</strong></p>
+      <ul>
+        <li>1 xícara de farinha de trigo</li>
+        <li>1 ovo</li>
+        <li>1 xícara de leite</li>
+        <li>1 colher de sopa de açúcar</li>
+        <li>1 colher de chá de fermento</li>
+      </ul>
+      <p><strong>Modo de preparo:</strong> Misture tudo, frite em frigideira untada e sirva com mel ou frutas.</p>
+    </div>
+  </div>
+
+  <div id="almoco" class="tab-content">
+    <div class="recipe">
+      <h3>Macarrão à Bolonhesa</h3>
+      <p><strong>Ingredientes:</strong></p>
+      <ul>
+        <li>250g de macarrão</li>
+        <li>300g de carne moída</li>
+        <li>1 cebola picada</li>
+        <li>2 dentes de alho</li>
+        <li>1 lata de molho de tomate</li>
+      </ul>
+      <p><strong>Modo de preparo:</strong> Refogue cebola e alho, adicione a carne, depois o molho. Cozinhe o macarrão e misture tudo.</p>
+    </div>
+  </div>
+
+  <div id="sobremesa" class="tab-content">
+    <div class="recipe">
+      <h3>Brigadeiro</h3>
+      <p><strong>Ingredientes:</strong></p>
+      <ul>
+        <li>1 lata de leite condensado</li>
+        <li>2 colheres de sopa de chocolate em pó</li>
+        <li>1 colher de manteiga</li>
+      </ul>
+      <p><strong>Modo de preparo:</strong> Misture tudo em fogo baixo até desgrudar da panela. Enrole com granulado ou sirva de colher.</p>
+    </div>
+  </div>
+
+  <script>
+    function openTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      contents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
+
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Mostrar/ocultar painel de acessibilidade
+    const accessibilityToggle = document.getElementById('accessibility-toggle');
+    const accessibilityControls = document.getElementById('accessibility-controls');
+
+    accessibilityToggle.addEventListener('click', () => {
+      const isVisible = accessibilityControls.style.display === 'flex';
+      accessibilityControls.style.display = isVisible ? 'none' : 'flex';
+      accessibilityToggle.setAttribute('aria-expanded', !isVisible);
+    });
+
+    // Controles de acessibilidade
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const increaseFontBtn = document.getElementById('increase-font');
+    const decreaseFontBtn = document.getElementById('decrease-font');
+    const body = document.body;
+
+    toggleThemeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      // Alterna o texto do botão
+      if (body.classList.contains('dark-theme')) {
+        toggleThemeBtn.textContent = '☀️ Tema';
+      } else {
+        toggleThemeBtn.textContent = '🌙 Tema';
+      }
+    });
+
+    // Define limites para fonte
+    const minFontSize = 12;
+    const maxFontSize = 24;
+
+    increaseFontBtn.addEventListener('click', () => {
+      let style = window.getComputedStyle(body, null).getPropertyValue('font-size');
+      let currentSize = parseFloat(style);
+      if (currentSize < maxFontSize) {
+        body.style.fontSize = (currentSize + 2) + 'px';
+      }
+    });
+
+    decreaseFontBtn.addEventListener('click', () => {
+      let style = window.getComputedStyle(body, null).getPropertyValue('font-size');
+      let currentSize = parseFloat(style);
+      if (currentSize > minFontSize) {
+        body.style.fontSize = (currentSize - 2) + 'px';
+      }
+    });
+  </script>
+
+</body>
+</html>
